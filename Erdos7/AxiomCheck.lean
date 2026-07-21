@@ -2,6 +2,7 @@ import Erdos7.Density
 import Erdos7.AbundancyFloor
 import Erdos7.Capacity
 import Erdos7.Enumeration
+import Erdos7.Bridge
 
 /-! Publication gate: every theorem below must depend on exactly
 `[propext, Classical.choice, Quot.sound]` — no `sorryAx`, no `_native.*`.
@@ -62,3 +63,17 @@ See erdos-engine/docs/ERDOS7_PLAN.md §5. -/
 #print axioms enum_ok_10000
 #print axioms odd_abundant_le_10000_mem
 #print axioms odd_covering_lcm_gt_10000
+
+-- Step 6: the formal-conjectures bridge (Erdos7.Bridge)
+#print axioms Erdos7.coversInt_of_coversZMod
+#print axioms Erdos7.coversZMod_of_coversInt
+#print axioms Erdos7.coversInt_iff_coversZMod
+#print axioms Erdos7.forall_not_coversInt_of_range
+#print axioms Erdos7.coversInt_iff_forall_lt
+#print axioms Erdos7.FC.mem_coset_iff_dvd
+#print axioms Erdos7.FC.not_le_span_two_iff_odd
+#print axioms Erdos7.FC.exists_strictCoveringSystem_odd
+#print axioms Erdos7.FC.fc_concrete_of_strictCoveringSystem
+#print axioms Erdos7.FC.fc_odd_strictCoveringSystem_lcm_gt_10000
+#print axioms Erdos7.Smoke.classic_coversInt
+#print axioms Erdos7.Smoke.not_coversInt_15
