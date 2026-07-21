@@ -22,12 +22,12 @@ together with the transport of this statement to the official
 [google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures)
 (`Erdos7.FC.fc_odd_strictCoveringSystem_lcm_gt_10000`, `Bridge.lean`).
 
-## Honest framing
+## What is new here, and what is not
 
 The mathematical content here is **known**: the density/abundancy argument
 is folklore, and McNew–Setty (*On the densities of covering numbers and
 abundant numbers*, [arXiv:2507.23041](https://arxiv.org/abs/2507.23041))
-classified covering numbers up to 10⁶ — far beyond this range — with a
+classified covering numbers up to 10⁶, far beyond this range, with a
 Gurobi-based pipeline. The contribution of this repository is epistemic, not
 mathematical: these exclusions are **theorems of the Lean kernel**, depending
 only on `propext`, `Classical.choice`, and `Quot.sound`, with no solver in
@@ -58,8 +58,8 @@ scripts/axiom_gate.sh   # PASS = 63 theorems, axioms ⊆ {propext, Classical.cho
 ```
 
 The two dominant costs are the 945 abundancy floor (≈80 s) and the 10⁴
-enumeration scan (≈100 s) — both single closed `decide`s checked by the
-kernel. `native_decide` is deliberately never used (each use would add a
+enumeration scan (≈100 s), both single closed `decide`s checked by the
+kernel. `native_decide` is never used (each use would add a
 native-evaluation trust axiom).
 
 ## Attribution
