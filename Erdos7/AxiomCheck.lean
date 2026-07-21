@@ -1,6 +1,7 @@
 import Erdos7.Density
 import Erdos7.AbundancyFloor
 import Erdos7.Capacity
+import Erdos7.Enumeration
 
 /-! Publication gate: every theorem below must depend on exactly
 `[propext, Classical.choice, Quot.sound]` — no `sorryAx`, no `_native.*`.
@@ -50,3 +51,14 @@ See erdos-engine/docs/ERDOS7_PLAN.md §5. -/
 #print axioms no_covering_lcm_dvd_9765
 #print axioms covering_lcm_notMem_oddAbundantBelow10000
 #print axioms odd_covering_lcm_gt_945
+
+-- Step 5: the enumeration + composed headline (Erdos7.Enumeration)
+#print axioms sigmaPairAux_eq
+#print axioms nat_div_div_self
+#print axioms sigmaPair_eq_sigma
+#print axioms sigma100_eq_sigma
+#print axioms mem_oddAbundant_of_mem_list
+#print axioms enumOk_sound
+#print axioms enum_ok_10000
+#print axioms odd_abundant_le_10000_mem
+#print axioms odd_covering_lcm_gt_10000
