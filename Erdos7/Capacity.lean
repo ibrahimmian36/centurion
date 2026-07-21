@@ -13,7 +13,7 @@ The density lemma (`Erdos7.Density`) only charges each congruence class its
 raw density `1/d`. This file charges the *CRT-forced overlap* among classes
 with pairwise-coprime moduli: if `T` is a pairwise-coprime family of moduli
 dividing `N`, the classes over `T` miss at least `(N / ∏ d) * ∏ (d - 1)`
-residues in `[0, N)` — exactly the Chinese-Remainder count — and the missed
+residues in `[0, N)` (exactly the Chinese-Remainder count), and the missed
 residues must be covered by the *other* moduli, each of which can only
 contribute `N / d` points. For every odd abundant `N ≤ 10000` the resulting
 inequality fails, so no covering system has all its moduli among the
@@ -41,8 +41,8 @@ certificate refutes every covering (odd or not) whose moduli divide the
 target `N`. Oddness only enters when composing with the abundancy floor.
 
 The three known stragglers `10395, 12285, 17325` (odd abundant, four prime
-factors) are NOT closed by this bound — see the honesty example at the end
-of the file — and are deliberately out of scope here.
+factors) are not closed by this bound (see the example at the end of the
+file) and are out of scope here.
 -/
 
 /-! ## The product of pairwise-coprime divisors divides `N` -/
@@ -535,7 +535,7 @@ theorem no_covering_lcm_dvd_9765
 perfect). The list itself is established by exhaustive search *outside* Lean;
 this file only asserts exclusions for its members. Its completeness — that no
 other odd `N < 10000` has `2 * N ≤ σ₁ N` — is the step-5 enumeration lemma
-and is deliberately NOT claimed here. -/
+and is not claimed here. -/
 def oddAbundantBelow10000 : Finset ℕ :=
   {945, 1575, 2205, 2835, 3465, 4095, 4725, 5355, 5775, 5985, 6435, 6615, 6825, 7245, 7425, 7875, 8085, 8415, 8505, 8925, 9135, 9555, 9765}
 
@@ -586,8 +586,8 @@ example : ¬ (∑ d ∈ ((12:ℕ).divisors.erase 1) \ {2, 3}, 12 / d <
     (12 / ∏ d ∈ ({2, 3} : Finset ℕ), d) * ∏ d ∈ ({2, 3} : Finset ℕ), (d - 1)) := by
   decide
 
-/-- Honesty: the first straggler `10395 = 3³·5·7·11` is NOT closed by the
-capacity bound — its certificate hypothesis is false at the prime family
+/-- Limit of the method: the first straggler `10395 = 3³·5·7·11` is not
+closed by the capacity bound; its certificate hypothesis is false at the prime family
 (and, having only four distinct primes, it offers no better family). The
 stragglers `10395, 12285, 17325` remain open in this development. -/
 example : ¬ (∑ d ∈ ((10395:ℕ).divisors.erase 1) \ {3, 5, 7, 11}, 10395 / d <

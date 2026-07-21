@@ -9,8 +9,8 @@ import Erdos7.Capacity
 # The enumeration lemma and the composed headline (Erdős #7, step 5)
 
 Step 4 (`Erdos7.Capacity`) excludes each of the 23 odd abundant-or-perfect
-`N < 10000` as a covering lcm. This file supplies the missing half — that
-those 23 are the ONLY odd `L ≤ 10000` with `2 * L ≤ σ₁ L` — and composes the
+`N < 10000` as a covering lcm. This file supplies the missing half, that
+those 23 are the only odd `L ≤ 10000` with `2 * L ≤ σ₁ L`, and composes the
 two into the headline
 
 `odd_covering_lcm_gt_10000` : any covering of `ℤ` by finitely many congruence
@@ -25,8 +25,8 @@ So we compute σ with a Finset-free, structurally recursive `sigmaAux`
 a single `% 2` and list members before the σ computation, prove the scanner
 sound by induction, and check ONE closed Bool equality by `decide`.
 
-Deliberately NOT `Nat.Abundant` anywhere: the target predicate is the
-non-strict `2 * L ≤ σ₁ L` (abundant-or-perfect) throughout — the strict
+`Nat.Abundant` is not used anywhere: the target predicate is the
+non-strict `2 * L ≤ σ₁ L` (abundant-or-perfect) throughout; the strict
 predicate would silently exclude perfect numbers from the enumeration.
 -/
 
@@ -35,7 +35,7 @@ predicate would silently exclude perfect numbers from the enumeration.
 /-- Paired-divisor scan: for each `d ≤ fuel` with `d ∣ n`, add the pair
 `d + n / d` (just `d` when `d * d = n`). Structural recursion with an
 accumulator; run with `fuel = √n` it visits `O(√n)` candidates at recursion
-depth `≤ √n` — both the step count and the depth that made the naive linear
+depth `≤ √n`: both the step count and the depth that made the naive linear
 scan infeasible are gone. -/
 def sigmaPairAux (n : ℕ) : ℕ → ℕ → ℕ
   | 0, acc => acc
@@ -48,7 +48,7 @@ def sigmaPairAux (n : ℕ) : ℕ → ℕ → ℕ
       else 0)
 
 /-- Finset-free divisor sum for `n < 101²`: the fuel is the CONSTANT `100`,
-never `Nat.sqrt` — `Nat.sqrt` is defined by well-founded recursion and does
+never `Nat.sqrt`, which is defined by well-founded recursion and does
 not reduce in the kernel, which would stall `decide` (measured: it did). The
 `d * d` three-way guard performs the √-cutoff arithmetically instead; all
 sqrt reasoning lives in the abstract correctness lemma `sigma100_eq_sigma`.
@@ -106,7 +106,7 @@ theorem nat_div_div_self {d n : ℕ} (h : d ∣ n) (hn : 0 < n) : n / (n / d) = 
   rw [Nat.mul_div_cancel_left c hd, Nat.mul_comm d c, Nat.mul_div_cancel_left d hc]
 
 /-- Generic pairing correctness: for any fuel `k` with `n < (k+1)²`, the
-paired scan computes the honest divisor sum — small divisors `d ≤ √n` carry
+paired scan computes the full divisor sum: small divisors `d ≤ √n` carry
 their partners `n / d` (the divisors `> √n`), the square root counted once;
 the `d * d` guards cut exactly at `√n`. Stated over an ABSTRACT `k` so no
 concrete fuel term is ever unfolded during elaboration (a literal `100`
@@ -284,7 +284,7 @@ theorem sigma100_eq_sigma (n : ℕ) (hn : 0 < n) (hbound : n < 101 * 101) :
 /-! ## The scanner -/
 
 /-- The 23 members of `oddAbundantBelow10000`, as a bare list (kernel-fast
-membership via `List` recursion — no `Finset`/`Multiset` quotient). -/
+membership via `List` recursion, avoiding the `Finset`/`Multiset` quotient). -/
 def oddAbundantList : List ℕ :=
   [945, 1575, 2205, 2835, 3465, 4095, 4725, 5355, 5775, 5985, 6435, 6615,
    6825, 7245, 7425, 7875, 8085, 8415, 8505, 8925, 9135, 9555, 9765]
