@@ -6,12 +6,12 @@
 #   1. Manifest (Erdos7/AxiomCheck.lean): every PUBLISHED theorem, listed by
 #      name, `#print axioms`-ed for the record.
 #   2. Audit (Erdos7/AxiomAudit.lean): every theorem in every Erdos7 module,
-#      discovered mechanically from the compiled environment — so a theorem
+#      discovered mechanically from the compiled environment, so a theorem
 #      added tomorrow cannot slip past the hand-maintained list.
 #
 # Every theorem must depend on AT MOST the three standard axioms
 #   propext, Classical.choice, Quot.sound
-# (subsets are fine — several lemmas need less), with zero `sorryAx` and zero
+# (subsets are fine; several lemmas need less), with zero `sorryAx` and zero
 # `_native.*` (native_decide is forbidden: it mints a per-theorem trust axiom).
 #
 # Usage: scripts/axiom_gate.sh          (from anywhere; exits 0 on PASS, 1 on FAIL)
@@ -36,16 +36,16 @@ viol=$(echo "$out" | grep "depends on" \
 count=$(echo "$out" | grep -c "depends on")
 
 if [ -n "$viol" ]; then
-  echo "AXIOM GATE: FAIL — disallowed axioms:"
+  echo "AXIOM GATE: FAIL: disallowed axioms:"
   echo "$viol" | sort -u
   exit 1
 fi
 if echo "$out" | grep -qE "sorryAx|_native"; then
-  echo "AXIOM GATE: FAIL — sorryAx or native axiom present"
+  echo "AXIOM GATE: FAIL: sorryAx or native axiom present"
   exit 1
 fi
 if [ "$count" -eq 0 ]; then
-  echo "AXIOM GATE: FAIL — no '#print axioms' output found"
+  echo "AXIOM GATE: FAIL: no '#print axioms' output found"
   exit 1
 fi
 
@@ -55,16 +55,16 @@ astatus=$?
 echo "$aud"
 
 if [ $astatus -ne 0 ]; then
-  echo "AXIOM GATE: FAIL (automated audit failed — see output above)"
+  echo "AXIOM GATE: FAIL (automated audit failed, see output above)"
   exit 1
 fi
 audited=$(echo "$aud" | sed -n 's/.*AXIOM AUDIT: PASS: \([0-9][0-9]*\) theorems.*/\1/p' | head -1)
 if [ -z "$audited" ]; then
-  echo "AXIOM GATE: FAIL — audit compiled but reported no PASS line"
+  echo "AXIOM GATE: FAIL: audit compiled but reported no PASS line"
   exit 1
 fi
 if [ "$audited" -lt "$count" ]; then
-  echo "AXIOM GATE: FAIL — audit saw $audited theorems, fewer than the $count in the manifest"
+  echo "AXIOM GATE: FAIL: audit saw $audited theorems, fewer than the $count in the manifest"
   exit 1
 fi
 
