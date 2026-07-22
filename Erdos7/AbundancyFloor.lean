@@ -5,11 +5,13 @@ Authors: Millennium Research (Ibby Mian), with Claude
 -/
 import Erdos7.Density
 
-set_option maxRecDepth 100000
-set_option maxHeartbeats 4000000
-
 /-! # The abundancy floor: no odd `N < 945` is abundant. -/
 
+set_option maxRecDepth 100000
+
+set_option maxHeartbeats 4000000 in
+-- one closed kernel `decide` over every `n < 945`; the default heartbeat
+-- budget only covers the elaborator's handoff, not a scan of this size
 theorem abundancy_floor_945 :
     ∀ n < 945, n % 2 = 1 → ∑ d ∈ Nat.divisors n, d < 2 * n := by
   decide +kernel

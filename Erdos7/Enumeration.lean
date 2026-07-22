@@ -336,6 +336,8 @@ theorem enumOk_sound : ∀ X, enumOk X = true →
 
 set_option maxRecDepth 4000000 in
 set_option maxHeartbeats 40000000 in
+-- one closed kernel scan of `[0, 10000]`, ≈ 1–2 min of CPU; the default
+-- heartbeat budget is sized for ordinary elaboration, not for this
 /-- The single closed computation: the scan of `[0, 10000]` passes. Kernel
 cost ≈ 1–2 min CPU (the constant-depth `sigma100` makes it linear in the
 bound; the naive `Nat.divisors` route was measured infeasible). -/

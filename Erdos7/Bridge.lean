@@ -239,7 +239,7 @@ theorem fc_concrete_of_strictCoveringSystem (C : StrictCoveringSystem ℤ)
   have hspanN : ∀ i, Ideal.span {(n i : ℤ)} = C.moduli (e i) := by
     intro i
     rw [hn]
-    show Ideal.span {((Submodule.IsPrincipal.generator (C.moduli (e i))).natAbs : ℤ)} = _
+    change Ideal.span {((Submodule.IsPrincipal.generator (C.moduli (e i))).natAbs : ℤ)} = _
     rw [Int.span_natAbs]
     exact Ideal.span_singleton_generator _
   have hgt : ∀ i, 1 < n i := by
@@ -250,10 +250,10 @@ theorem fc_concrete_of_strictCoveringSystem (C : StrictCoveringSystem ℤ)
     rcases h01 with h0 | h1
     · apply C.ne_bot (e i)
       rw [← hspanN i, h0]
-      simp [Ideal.span_singleton_eq_bot]
+      simp
     · apply C.ne_top (e i)
       rw [← hspanN i, h1]
-      simp [Ideal.span_singleton_eq_top, Int.isUnit_iff]
+      simp
   have hodd' : ∀ i, Odd (n i) := by
     intro i
     have h := hodd (e i)
@@ -277,9 +277,9 @@ theorem fc_concrete_of_strictCoveringSystem (C : StrictCoveringSystem ℤ)
       rw [hspanN (e.symm j), hje]
     rw [hseteq] at hj
     have hdvd := (mem_coset_iff_dvd (C.residue j) (n (e.symm j) : ℤ) x).mp hj
-    show (n (e.symm j) : ℤ) ∣ (x - a (e.symm j))
+    change (n (e.symm j) : ℤ) ∣ (x - a (e.symm j))
     rw [ha]
-    show (n (e.symm j) : ℤ) ∣ (x - C.residue (e (e.symm j)))
+    change (n (e.symm j) : ℤ) ∣ (x - C.residue (e (e.symm j)))
     rw [hje]
     exact hdvd
   exact ⟨Fintype.card C.ι, a, n, hgt, hodd', hinj, hcov⟩

@@ -337,7 +337,7 @@ theorem capacity_exclusion_int
     have h1 : (a i) % (n i : ℤ) = (x : ℤ) % (n i : ℤ) := Int.modEq_iff_dvd.mpr hi
     have h2 : ((x : ℤ)) % (n i : ℤ) = ((x % n i : ℕ) : ℤ) := by
       rw [Int.natCast_mod]
-    show x % n i = r i
+    change x % n i = r i
     rw [hrdef]
     simp only [h1, h2, Int.toNat_natCast]
   exact capacity_exclusion hN T hTdvd hTone hTcop harith S hdvd hone hinjS hcov'
@@ -537,7 +537,8 @@ this file only asserts exclusions for its members. Its completeness — that no
 other odd `N < 10000` has `2 * N ≤ σ₁ N` — is the step-5 enumeration lemma
 and is not claimed here. -/
 def oddAbundantBelow10000 : Finset ℕ :=
-  {945, 1575, 2205, 2835, 3465, 4095, 4725, 5355, 5775, 5985, 6435, 6615, 6825, 7245, 7425, 7875, 8085, 8415, 8505, 8925, 9135, 9555, 9765}
+  {945, 1575, 2205, 2835, 3465, 4095, 4725, 5355, 5775, 5985, 6435, 6615,
+   6825, 7245, 7425, 7875, 8085, 8415, 8505, 8925, 9135, 9555, 9765}
 
 theorem covering_lcm_notMem_oddAbundantBelow10000
     {ι : Type} [Fintype ι] (n : ι → ℕ) (a : ι → ℤ)
