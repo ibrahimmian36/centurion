@@ -44,7 +44,8 @@ progress on the open question.
 | `Erdos7/Enumeration.lean` | Kernel-checked enumeration (those 23 are the only candidates); the headline |
 | `Erdos7/Bridge.lean` | ℤ ⟺ `ZMod N` periodicity bridge; formal-conjectures transport |
 | `Erdos7/AxiomCheck.lean` | `#print axioms` for all 63 published theorems |
-| `scripts/axiom_gate.sh` | Automated gate: fails on any axiom beyond the three, any `sorryAx`, any `_native.*` |
+| `Erdos7/AxiomAudit.lean` | Automated audit: discovers every theorem in every module from the compiled environment and re-checks its axiom closure, so nothing can slip past the hand-kept list |
+| `scripts/axiom_gate.sh` | The gate, run by CI on every push: manifest + audit, failing on any axiom beyond the three, any `sorryAx`, any `_native.*` |
 
 ## Check it yourself
 
@@ -54,7 +55,7 @@ Requires [elan](https://github.com/leanprover/elan); the toolchain
 ```
 lake exe cache get      # fetch mathlib build cache
 lake build Erdos7       # ~10 min: two long kernel computations
-scripts/axiom_gate.sh   # PASS = 63 theorems, axioms ⊆ {propext, Classical.choice, Quot.sound}
+scripts/axiom_gate.sh   # PASS = 63 published + full-library audit, axioms ⊆ {propext, Classical.choice, Quot.sound}
 ```
 
 The two dominant costs are the 945 abundancy floor (≈80 s) and the 10⁴
