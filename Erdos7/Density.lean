@@ -167,7 +167,7 @@ theorem covering_density_ge_one
     have h1 : (a i) % (n i : ℤ) = (x : ℤ) % (n i : ℤ) := Int.modEq_iff_dvd.mpr hi
     have h2 : ((x : ℤ)) % (n i : ℤ) = ((x % n i : ℕ) : ℤ) := by
       rw [Int.natCast_mod]
-    show x % n i = r i
+    change x % n i = r i
     rw [hrdef]
     simp only [h1, h2, Int.toNat_natCast]
   have key := covering_density_rat hN0 S hdvd hcov'
