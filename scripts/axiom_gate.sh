@@ -1,7 +1,15 @@
 #!/bin/bash
 # Erdős-7 publication gate (ERDOS7_PLAN.md step 8).
 #
-# Every published theorem must depend on AT MOST the three standard axioms
+# Two independent layers, both required:
+#
+#   1. Manifest (Erdos7/AxiomCheck.lean): every PUBLISHED theorem, listed by
+#      name, `#print axioms`-ed for the record.
+#   2. Audit (Erdos7/AxiomAudit.lean): every theorem in every Erdos7 module,
+#      discovered mechanically from the compiled environment — so a theorem
+#      added tomorrow cannot slip past the hand-maintained list.
+#
+# Every theorem must depend on AT MOST the three standard axioms
 #   propext, Classical.choice, Quot.sound
 # (subsets are fine — several lemmas need less), with zero `sorryAx` and zero
 # `_native.*` (native_decide is forbidden: it mints a per-theorem trust axiom).
@@ -10,6 +18,7 @@
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
+# ---------- Layer 1: the curated manifest ----------
 out=$(lake env lean Erdos7/AxiomCheck.lean 2>&1)
 status=$?
 echo "$out"
@@ -40,4 +49,23 @@ if [ "$count" -eq 0 ]; then
   exit 1
 fi
 
-echo "AXIOM GATE: PASS ($count theorems, axioms ⊆ {propext, Classical.choice, Quot.sound})"
+# ---------- Layer 2: the automated whole-library audit ----------
+aud=$(lake env lean Erdos7/AxiomAudit.lean 2>&1)
+astatus=$?
+echo "$aud"
+
+if [ $astatus -ne 0 ]; then
+  echo "AXIOM GATE: FAIL (automated audit failed — see output above)"
+  exit 1
+fi
+audited=$(echo "$aud" | sed -n 's/.*AXIOM AUDIT: PASS: \([0-9][0-9]*\) theorems.*/\1/p' | head -1)
+if [ -z "$audited" ]; then
+  echo "AXIOM GATE: FAIL — audit compiled but reported no PASS line"
+  exit 1
+fi
+if [ "$audited" -lt "$count" ]; then
+  echo "AXIOM GATE: FAIL — audit saw $audited theorems, fewer than the $count in the manifest"
+  exit 1
+fi
+
+echo "AXIOM GATE: PASS ($count published theorems in the manifest, $audited audited library-wide, axioms ⊆ {propext, Classical.choice, Quot.sound})"
