@@ -590,9 +590,24 @@ example : ¬ (∑ d ∈ ((12:ℕ).divisors.erase 1) \ {2, 3}, 12 / d <
 /-- Limit of the method: the first straggler `10395 = 3³·5·7·11` is not
 closed by the capacity bound; its certificate hypothesis is false at the prime family
 (and, having only four distinct primes, it offers no better family). The
-stragglers `10395, 12285, 17325` remain open in this development. -/
+stragglers `10395, 12285, 17325` remain open in this development; each is
+verified unexcluded below. -/
 example : ¬ (∑ d ∈ ((10395:ℕ).divisors.erase 1) \ {3, 5, 7, 11}, 10395 / d <
     (10395 / ∏ d ∈ ({3, 5, 7, 11} : Finset ℕ), d) *
+      ∏ d ∈ ({3, 5, 7, 11} : Finset ℕ), (d - 1)) := by
+  decide
+
+/-- The second straggler `12285 = 3³·5·7·13` is likewise not closed at its
+prime family. -/
+example : ¬ (∑ d ∈ ((12285:ℕ).divisors.erase 1) \ {3, 5, 7, 13}, 12285 / d <
+    (12285 / ∏ d ∈ ({3, 5, 7, 13} : Finset ℕ), d) *
+      ∏ d ∈ ({3, 5, 7, 13} : Finset ℕ), (d - 1)) := by
+  decide
+
+/-- The third straggler `17325 = 3²·5²·7·11` is likewise not closed at its
+prime family. -/
+example : ¬ (∑ d ∈ ((17325:ℕ).divisors.erase 1) \ {3, 5, 7, 11}, 17325 / d <
+    (17325 / ∏ d ∈ ({3, 5, 7, 11} : Finset ℕ), d) *
       ∏ d ∈ ({3, 5, 7, 11} : Finset ℕ), (d - 1)) := by
   decide
 
