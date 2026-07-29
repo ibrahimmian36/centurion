@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this development, please cite the accompanying paper."
+title: "Centurion: kernel-checked exclusions for the Erdős–Selfridge odd covering problem"
+authors:
+  - family-names: Mian
+    given-names: Ibrahim
+  - family-names: Siddique
+    given-names: Shayaan
+repository-code: "https://github.com/ibrahimmian36/centurion"
+license: Apache-2.0
+preferred-citation:
+  type: article
+  title: "Kernel-Checked Exclusions for the Erdős–Selfridge Odd Covering Problem: Any Odd Covering of Z Has lcm Exceeding 10000"
+  authors:
+    - family-names: Mian
+      given-names: Ibrahim
+    - family-names: Siddique
+      given-names: Shayaan
+  year: 2026
+  url: "https://arxiv.org/abs/2607.25628"
+  identifiers:
+    - type: other
+      value: "arXiv:2607.25628"
