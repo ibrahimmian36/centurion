@@ -22,6 +22,11 @@ together with the transport of this statement to the official
 [google-deepmind/formal-conjectures](https://github.com/google-deepmind/formal-conjectures)
 (`Erdos7.FC.fc_odd_strictCoveringSystem_lcm_gt_10000`, `Bridge.lean`).
 
+The accompanying paper is on arXiv:
+[arXiv:2607.25628](https://arxiv.org/abs/2607.25628) — *Kernel-Checked
+Exclusions for the Erdős–Selfridge Odd Covering Problem: Any Odd Covering
+of ℤ Has lcm Exceeding 10000*.
+
 ## What is new here, and what is not
 
 The mathematical content here is **known**: the density/abundancy argument
@@ -70,6 +75,22 @@ mirrored verbatim from
 [formal-conjectures](https://github.com/google-deepmind/formal-conjectures)
 (Apache-2.0, The Formal Conjectures Authors), verified field-for-field
 against upstream `main` @ `81e700d16ada`.
+
+## Citing
+
+```bibtex
+@misc{mian2026erdos7,
+  title         = {Kernel-Checked Exclusions for the Erd\H{o}s--Selfridge
+                   Odd Covering Problem: Any Odd Covering of $\mathbb{Z}$
+                   Has lcm Exceeding 10000},
+  author        = {Ibrahim Mian and Shayaan Siddique},
+  year          = {2026},
+  eprint        = {2607.25628},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LO},
+  url           = {https://arxiv.org/abs/2607.25628}
+}
+```
 
 ## License
 
