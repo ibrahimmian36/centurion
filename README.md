@@ -30,10 +30,12 @@ of ℤ Has lcm Exceeding 10000*.
 ## What is new here, and what is not
 
 The mathematical content here is **known**: the density/abundancy argument
-is folklore, and McNew–Setty (*On the densities of covering numbers and
-abundant numbers*, [arXiv:2507.23041](https://arxiv.org/abs/2507.23041))
-classified covering numbers up to 10⁶, far beyond this range, with a
-Gurobi-based pipeline. The contribution of this repository is epistemic, not
+is folklore. The nearest recent work is McNew and Setty (*On the densities
+of covering numbers and abundant numbers*,
+[arXiv:2507.23041](https://arxiv.org/abs/2507.23041)), who show the covering
+numbers have a natural density and bound it between 0.103230 and 0.103398 —
+a different quantity from the lcm bound here, against which this repository
+makes no priority or improvement claim. The contribution of this repository is epistemic, not
 mathematical: these exclusions are **theorems of the Lean kernel**, depending
 only on `propext`, `Classical.choice`, and `Quot.sound`, with no solver in
 the trusted base and no appeal to unformalized literature. This is not
@@ -95,4 +97,4 @@ against upstream `main` @ `81e700d16ada`.
 ## License
 
 [Apache 2.0](LICENSE). Copyright 2026 Millennium Research
-(Ibby Mian, Shayaan Siddique); developed with Claude.
+(Ibrahim Mian, Shayaan Siddique).
