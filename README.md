@@ -1,6 +1,6 @@
 # Erdős #7: kernel-checked exclusions for the odd covering problem
 
-Lean 4 formalization of known partial results on the Erdős–Selfridge **odd
+Lean 4 formalization of known partial results on the Erdős-Selfridge **odd
 covering problem** ([Erdős #7](https://www.erdosproblems.com/7)): *does a
 covering system of ℤ exist whose moduli are all odd, distinct, and greater
 than 1?* The problem is open; this repository proves, sorry-free and
@@ -24,7 +24,7 @@ together with the transport of this statement to the official
 
 The accompanying paper is on arXiv:
 [arXiv:2607.25628](https://arxiv.org/abs/2607.25628) — *Kernel-Checked
-Exclusions for the Erdős–Selfridge Odd Covering Problem: Any Odd Covering
+Exclusions for the Erdős-Selfridge Odd Covering Problem: Any Odd Covering
 of ℤ Has lcm Exceeding 10000*.
 
 ## What is new here, and what is not
@@ -82,7 +82,7 @@ against upstream `main` @ `81e700d16ada`.
 
 ```bibtex
 @misc{mian2026erdos7,
-  title         = {Kernel-Checked Exclusions for the Erd\H{o}s--Selfridge
+  title         = {Kernel-Checked Exclusions for the Erd\H{o}s-Selfridge
                    Odd Covering Problem: Any Odd Covering of $\mathbb{Z}$
                    Has lcm Exceeding 10000},
   author        = {Ibrahim Mian and Shayaan Siddique},
